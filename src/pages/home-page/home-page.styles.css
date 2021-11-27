@@ -1,0 +1,58 @@
+.home-container{
+    /* background: center; */
+    height: 100vh;
+    background-size: contain;
+    color: black;
+    background-repeat: no-repeat;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+}
+.about{
+    text-align: center;
+    margin-top: 0;
+    padding-bottom: 5%;
+    padding-top: 3%;
+    background-color: white;
+}
+.about-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.description{
+    flex: 30%;
+    text-align: center;
+    margin-left: 8rem;
+    font-size: 1vw;
+
+}
+.description p{
+    font-size: 1.4em;
+    text-align: left;
+}
+.profile-picture{
+    flex: 40%;
+}
+.profile-picture img{
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+}
+.view-blog{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.no-posts{
+    font-size: 2rem;
+    margin: 5rem auto;
+    text-align: center;
+}

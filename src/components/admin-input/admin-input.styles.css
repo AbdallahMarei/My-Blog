@@ -1,0 +1,15 @@
+.post-form{
+   text-align: center;
+   margin: 2rem 0;
+}
+.post-input{
+    width: 30%;
+    background-color: #f3f3f3;
+    border-radius: 20px;
+    margin-left: 2rem;
+}
+.post-button{
+    width: 5rem;
+    border-radius: 20px;
+    margin-left: 2rem;
+}

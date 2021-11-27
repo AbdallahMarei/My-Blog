@@ -1,0 +1,43 @@
+.form-container form{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 2rem;
+    justify-content: space-evenly;
+    height: 40rem;
+    width: 30rem;
+    background-color: #f3f3f3;
+}
+    .success-message{
+        font-size: 2rem;
+        background-color: rgb(82, 82, 235);
+        padding: 1rem;
+        color: white;
+        margin-bottom: 1rem;
+    }
+    .message{
+        color: red;
+        font-size: 1.5rem;
+    }
+
+    input{
+        width: 100%;
+        border: none;
+        height: 4rem;
+        background-color: white;
+        padding-left: 1rem;
+    }
+    button{
+        background-color: green;
+        border: none;
+        color: white;
+        height: 4rem;
+        cursor: pointer;
+        margin-top: 1rem;
+       
+    }
+  
+    .sign-heading{
+        margin-bottom: 2rem;
+        text-align: left;
+    }

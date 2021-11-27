@@ -1,0 +1,29 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f3f3;
+    height: 80px;
+}
+.logo{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    padding-left: 1rem;
+    font-size: 2rem;
+}
+.options{
+    display: flex;
+}
+
+.option{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    padding-right: 1rem;
+    transition: 0.5s;
+    font-size: 1.3rem;
+}
+.option:hover{
+    transform: scale(1.2);
+}

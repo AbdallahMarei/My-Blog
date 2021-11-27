@@ -1,0 +1,15 @@
+.comment-div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.comment-button-two{
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+    margin-left: 1rem;
+}
+.comment-para{
+    margin-bottom: 1rem;
+}
