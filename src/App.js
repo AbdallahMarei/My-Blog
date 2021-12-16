@@ -68,7 +68,7 @@ class App extends React.Component {
       this.setState({})
     } else {
       const postsLocal = JSON.parse(localStorage.getItem("posts"))
-      postsLocal.push(post)
+      postsLocal.unshift(post)
       localStorage.setItem("posts", JSON.stringify(postsLocal))
       this.setState({})
     }
@@ -78,13 +78,13 @@ class App extends React.Component {
   }
 
   render(){
-    const {users,isLoggedIn,role} = this.state;
+    const {users,isLoggedIn,role,userName} = this.state;
     return (
       <Router>
         <Header signInAndSignOut={this.signInAndSignOut} isLoggedIn={isLoggedIn}/>
         <Switch>
           <Route exact path="/" >
-            <HomePage isLoggedIn={isLoggedIn} role={role} handlePostSubmit={this.handlePostSubmit} removePost={this.removePost}/>
+            <HomePage isLoggedIn={isLoggedIn} role={role} handlePostSubmit={this.handlePostSubmit} removePost={this.removePost} user={userName}/>
           </Route>
           <Route exact path="/signin" render={() => isLoggedIn ? (<Redirect to="/" />) : (<SignIn users={users} addUser={this.addToUsers} check={this.checkUsers}/>)}/>
         </Switch>
