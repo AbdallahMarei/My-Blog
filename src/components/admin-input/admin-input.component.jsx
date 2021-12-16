@@ -1,34 +1,27 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./admin-input.styles.css";
 
-class AdminInput extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.state={
-            title: "",
-            desc: "",
-            likes: []
-        }
-    }
+const AdminInput = ({handlePostSubmit}) =>  {
+    const [post,setPost] = useState({
+        title: "",
+        desc: "",
+        likes: []
+    })
     
-
-    handleChange = (e) => {
+    const handleChange = (e) => {
         const {name, value} = e.target;
-        this.setState({[name]:value})
+        setPost({...post,[name]:value})
     }
-    render() {
-        const post = this.state
         return (
             <div>
-                <form onSubmit={(e) => this.props.handlePostSubmit(e,post)} className="post-form">
-                    <input className="post-input" placeholder="Write a title" type="text" value={this.state.title} name="title" onChange={this.handleChange}/>
-                    <input className="post-input" placeholder="Write a description" type="text" value={this.state.desc} name="desc" onChange={this.handleChange}/>
+                <form onSubmit={(e) => handlePostSubmit(e,post)} className="post-form">
+                    <input className="post-input" placeholder="Write a title" type="text" value={post.title} name="title" onChange={handleChange}/>
+                    <input className="post-input" placeholder="Write a description" type="text" value={post.desc} name="desc" onChange={handleChange}/>
                     <button className="post-button" type="submit">Post</button>
                 </form>
             </div>
         )
-    }
+   
 }
 
 export default AdminInput

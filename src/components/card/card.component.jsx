@@ -60,7 +60,8 @@ class Card extends React.Component {
 
     render(){
         const postss = JSON.parse(localStorage.getItem("posts"));
-        const postsLikes = postss[this.props.ind].likes.length
+        const postsLikes = postss[this.props.ind].likes
+        const didLike = postsLikes.includes(this.props.user)
         const comments = JSON.parse(localStorage.getItem(`${this.props.id} comment`))
         const {comment} = this.state
         return (
@@ -71,8 +72,8 @@ class Card extends React.Component {
                <p className="card-desc">{this.props.post.desc}</p>
                 </div>
                <div className="utilities">
-               <span className="card-span">Likes: {postsLikes ? postsLikes : 0}</span>
-              {this.props.role ? null : <button type="button" className="card-button" onClick={() => this.handleClick(this.props.id,this.props.user)}>Like</button>} 
+               <span className="card-span">Likes: {postsLikes.length ? postsLikes.length : 0}</span>
+              {this.props.role ? null : <i class={`fas fa-heart ${didLike ? "liked" : ""}`} onClick={()=>this.handleClick(this.props.id,this.props.user)}></i>} 
                </div>
                {this.props.role ? <button type="button" className="card-button" onClick={() => this.props.removePost(this.props.id)}>Remove Post</button> : null} 
             </div>

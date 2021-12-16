@@ -26,6 +26,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;  
+    margin-bottom: 2rem;
 }
 .card-span{
     margin-right: 1.5rem
@@ -52,4 +53,12 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+.fa-heart{
+    cursor: pointer;
+    color: grey
+    
+}
+.liked{
+    color: red;
 }
