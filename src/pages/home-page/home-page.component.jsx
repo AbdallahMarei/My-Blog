@@ -33,7 +33,7 @@ class HomePage extends React.Component {
                 <hr />
                     {!this.props.isLoggedIn ? <div className="view-blog"><h1>Please Sign In So You Can View My Posts</h1></div> : <div>
                         {this.props.role ? <AdminInput handlePostSubmit={this.props.handlePostSubmit}/> : null}
-                        {posts ? posts.map((element,index) => <Card removePost={this.props.removePost} key={element.title + index} id={element.title + index}  post={element} role={this.props.role}/>) : (<p className="no-posts">There are no posts yet</p>) }
+                        {posts ? posts.map((element,index) => <Card removePost={this.props.removePost} key={element.title + index} id={element.title + index} ind={index}  post={element} role={this.props.role}user={this.props.user}/>) : (<p className="no-posts">There are no posts yet</p>) }
                         </div>}
                 </section>
             </div>

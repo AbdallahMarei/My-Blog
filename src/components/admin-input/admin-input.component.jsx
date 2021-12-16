@@ -7,9 +7,11 @@ class AdminInput extends React.Component {
 
         this.state={
             title: "",
-            desc: ""
+            desc: "",
+            likes: []
         }
     }
+    
 
     handleChange = (e) => {
         const {name, value} = e.target;

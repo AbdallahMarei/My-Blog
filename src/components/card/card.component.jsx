@@ -11,30 +11,37 @@ class Card extends React.Component {
         }
     }
 
-    handleClick = () => {
-        if(!localStorage.getItem("posts")){
-            localStorage.setItem(`${this.props.id} counter`, JSON.stringify(0));
-            this.setState({})
-        } else {
-            let counterLocal = JSON.parse(localStorage.getItem(`${this.props.id} counter`))
-            counterLocal += 1
-            localStorage.setItem(`${this.props.id} counter`, JSON.stringify(counterLocal))
-            this.setState({})
-        }
+    handleClick = (id,user) => {
+            let postss = JSON.parse(localStorage.getItem("posts"));
+            postss.forEach((element,index) => {
+                if(element.title + index === id){
+                    if(element.likes.includes(user)){
+                        element.likes.splice(element.likes.indexOf(user),1)
+                        localStorage.setItem("posts" , JSON.stringify(postss))
+                        this.setState({})
+                    } else {
+                        element.likes.push(user)
+                        localStorage.setItem("posts" , JSON.stringify(postss))
+                        this.setState({})
+                    }
+                }
+            })
+
     }
     handleComment = (e) => {
         const {name, value} = e.target;
         this.setState({[name]:value})
     }
-    handleCommentSubmit = (e,id,comment) => {
+    handleCommentSubmit = (e,id,comment,user) => {
         e.preventDefault();
-        const commentArray = [comment];
+        const commentArray = [{comment: comment, user: user}];
     if(!localStorage.getItem(`${id} comment`)){
       localStorage.setItem(`${id} comment`, JSON.stringify(commentArray))
       this.setState({comment: ""})
     } else {
+        const obj = {comment: comment, user: user}
       const commentsLocal = JSON.parse(localStorage.getItem(`${id} comment`))
-      commentsLocal.push(comment)
+      commentsLocal.push(obj)
       localStorage.setItem(`${id} comment`, JSON.stringify(commentsLocal))
       this.setState({comment: ""})
     }
@@ -52,7 +59,8 @@ class Card extends React.Component {
     
 
     render(){
-        const localCounter = JSON.parse(localStorage.getItem(`${this.props.id} counter`))
+        const postss = JSON.parse(localStorage.getItem("posts"));
+        const postsLikes = postss[this.props.ind].likes.length
         const comments = JSON.parse(localStorage.getItem(`${this.props.id} comment`))
         const {comment} = this.state
         return (
@@ -63,19 +71,19 @@ class Card extends React.Component {
                <p className="card-desc">{this.props.post.desc}</p>
                 </div>
                <div className="utilities">
-               <span className="card-span">Likes: {localCounter ? localCounter : 0}</span>
-              {this.props.role ? null : <button type="button" className="card-button" onClick={this.handleClick}>Like</button>} 
+               <span className="card-span">Likes: {postsLikes ? postsLikes : 0}</span>
+              {this.props.role ? null : <button type="button" className="card-button" onClick={() => this.handleClick(this.props.id,this.props.user)}>Like</button>} 
                </div>
                {this.props.role ? <button type="button" className="card-button" onClick={() => this.props.removePost(this.props.id)}>Remove Post</button> : null} 
             </div>
             <div className="comments-container">
                 <div>
-                    <form onSubmit={(e) => this.handleCommentSubmit(e,this.props.id,comment)} className="post-form">
+                    <form onSubmit={(e) => this.handleCommentSubmit(e,this.props.id,comment,this.props.user)} className="post-form">
                     <input className="comment-input"  placeholder="Write a comment" type="text" value={this.state.comment} name="comment" onChange={this.handleComment}/>
                     <button type="submit" className="comment-button">Comment</button>
                     </form>
                 </div>
-                {comments ? comments.map((element,index) => <Comment removeComment={this.removeComment} key={element + index} id={this.props.id} ind={index} comment={element} role={this.props.role} />  ) : null }
+                {comments ? comments.map((element,index) => <Comment removeComment={this.removeComment} key={element.comment + index} id={this.props.id} ind={index} comment={element.comment} role={this.props.role} user={element.user} />  ) : null }
             </div>
             </div>
         )
